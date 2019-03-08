@@ -21,14 +21,19 @@
             tableLayout = new ht.ui.TableLayout();
             tableLayout.setColumnPreferredWidth(0, 40);
             tableLayout.setColumnPreferredWidth(1, 150);
-            tableLayout.set
+            tableLayout.setColumnPreferredWidth(2, 200);
 
             tableRow1 = new ht.ui.TableRow();
             nameLabel = new ht.ui.Label();
             nameLabel.setText('姓名');
             tableRow1.addView(nameLabel);
             nameInput = new ht.ui.TextField();
+            nameInput.setFormDataName('name');
             tableRow1.addView(nameInput);
+            var jsonInfo = new ht.ui.TextArea();
+            tableRow1.addView(jsonInfo, {
+                rowspan: 3
+            })
             tableLayout.addView(tableRow1);
             
             tableRow2 = new ht.ui.TableRow();
@@ -36,6 +41,7 @@
             levelLabel.setText('星级');
             tableRow2.addView(levelLabel);
             rate = new ht.ui.Rate();
+            rate.setFormDataName('level');
             tableRow2.addView(rate);
             tableLayout.addView(tableRow2);
 
@@ -43,10 +49,26 @@
             hbox = new ht.ui.HBoxLayout(),
             submit = new ht.ui.Button(),
             reset = new ht.ui.Button();
+            load = new ht.ui.Button();
             submit.setText('Submit');
+            submit.on('click', function(e) {
+                window.myjson = form.getJSON();
+                jsonInfo.setValue(JSON.stringify(form.getJSON(), null, 4));
+            });
             hbox.addView(submit, {width: 50});
             reset.setText('Reset');
+            reset.on('click', function(e) {
+                form.setJSON({});
+            });
             hbox.addView(reset, {
+                width: 50,
+                marginLeft: 20
+            });
+            load.setText('Load');
+            load.on('click', function(e) {
+                form.setJSON(jsonInfo.getValue());
+            });
+            hbox.addView(load, {
                 width: 50,
                 marginLeft: 20
             });
@@ -57,6 +79,8 @@
                 align: 'center'
             });
             tableLayout.addView(tableRow3);
+
+            var form = new ht.ui.Form(tableLayout);
 
             var preferredSize = tableLayout.getPreferredSize();
             tableLayout.addToDOM(window, {x: 10, y: 10, width: preferredSize.width, height: preferredSize.height});

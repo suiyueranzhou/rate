@@ -20,7 +20,7 @@ def('ht.ui.Rate', ht.ui.View, {
     __iconHeight: 20,                                     // 图标高度
     __iconGap: 5,                                         // 图标间距
 
-    ms_ac: ['value', 'hoverValue'],  
+    ms_ac: ['value', 'hoverValue', 'formDataName'],  
 
     _value: 0,                                            // 选中分值   
     _hoverValue: 0,                                       // 悬浮分值                                  
@@ -58,6 +58,18 @@ def('ht.ui.Rate', ht.ui.View, {
         preferredSizeProperties.iconGap = true;
 
         return preferredSizeProperties;
+    },
+
+    getFormDataProperties: function() {
+        return { value: true };
+    },
+
+    getFormDataValue: function() {
+        return this.getValue();
+    },
+
+    setFormDataValue: function(value) {
+        this.setValue(value);
     },
 
     validateImpl: function(x, y, width, height) {
