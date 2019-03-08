@@ -1,0 +1,6 @@
+lib
+/build
+jsdoc
+release
+node_modules
+readme1.md

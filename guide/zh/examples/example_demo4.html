@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rate</title>
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script src="../../../../lib/ht.js"></script>
+    <script src="../../../../lib/ht-ui.js"></script>
+    <script src="../../../lib/ht-ui-rate.js"></script>
+    <script>        
+        function init() {
+            tableLayout = new ht.ui.TableLayout();
+            tableLayout.setColumnPreferredWidth(0, 40);
+            tableLayout.setColumnPreferredWidth(1, 150);
+            tableLayout.set
+
+            tableRow1 = new ht.ui.TableRow();
+            nameLabel = new ht.ui.Label();
+            nameLabel.setText('姓名');
+            tableRow1.addView(nameLabel);
+            nameInput = new ht.ui.TextField();
+            tableRow1.addView(nameInput);
+            tableLayout.addView(tableRow1);
+            
+            tableRow2 = new ht.ui.TableRow();
+            levelLabel = new ht.ui.Label();
+            levelLabel.setText('星级');
+            tableRow2.addView(levelLabel);
+            rate = new ht.ui.Rate();
+            tableRow2.addView(rate);
+            tableLayout.addView(tableRow2);
+
+            tableRow3 = new ht.ui.TableRow(),
+            hbox = new ht.ui.HBoxLayout(),
+            submit = new ht.ui.Button(),
+            reset = new ht.ui.Button();
+            submit.setText('Submit');
+            hbox.addView(submit, {width: 50});
+            reset.setText('Reset');
+            hbox.addView(reset, {
+                width: 50,
+                marginLeft: 20
+            });
+            tableRow3.addView(hbox, {
+                width: 'wrap_content',
+                height: 'wrap_content',
+                colspan: 2,
+                align: 'center'
+            });
+            tableLayout.addView(tableRow3);
+
+            var preferredSize = tableLayout.getPreferredSize();
+            tableLayout.addToDOM(window, {x: 10, y: 10, width: preferredSize.width, height: preferredSize.height});
+        }
+    </script>
+</head>
+
+<body onload="init();">
+
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rate</title>
+    <style>
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script src="../../../../lib/ht.js"></script>
+    <script src="../../../../lib/ht-ui.js"></script>
+    <script src="../../../lib/ht-ui-rate.js"></script>
+    <script>         
+        function init() {
+            hbox = new ht.ui.HBoxLayout(),
+            rate = new ht.ui.Rate(),
+            label = new ht.ui.Label();
+
+            rate.setMax(6);
+            rate.setIconWidth(20);
+            rate.setIconHeight(20);
+            rate.setIconGap(10);
+            rate.setReadOnly(true);
+            rate.setValue(4.5);
+
+            rate.on('p:value', function(e) {
+                label.setText(e.newValue);
+            });
+
+            label.setText(rate.getValue());
+            label.setTextColor('#fff');
+            label.setAlign('center');
+            label.setBackground(new ht.ui.drawable.ColorDrawable('rgb(52, 152, 219)', 5));
+
+            hbox.setBorder(new ht.ui.border.LineBorder(1, ht.ui.uiTheme.baseColor));
+            hbox.setPadding(20);
+            hbox.addView(rate, {
+                width: 'wrap_content',
+                height: 'wrap_content',
+                vAlign: 'middle'
+            });
+            hbox.addView(label, {
+                width: 50,
+                height: 'wrap_content',
+                vAlign: 'middle'
+            });
+
+            var preferredSize = hbox.getPreferredSize();
+            hbox.addToDOM(window, { x: 10, y: 10, width: preferredSize.width, height: preferredSize.height });
+
+            hbox2 = new ht.ui.HBoxLayout(),
+            rate2 = new ht.ui.Rate(),
+            label2 = new ht.ui.Label();
+
+            rate2.setMax(6);
+            rate2.setIconWidth(20);
+            rate2.setIconHeight(20);
+            rate2.setIconGap(10);
+            rate2.setReadOnly(true);
+            rate2.setAllowHalf(false);
+            rate2.setValue(4.5);
+
+            rate2.on('p:value', function(e) {
+                label2.setText(e.newValue);
+            });
+
+            label2.setText(rate.getValue());
+            label2.setTextColor('#fff');
+            label2.setAlign('center');
+            label2.setBackground(new ht.ui.drawable.ColorDrawable('rgb(52, 152, 219)', 5));
+
+            hbox2.setBorder(new ht.ui.border.LineBorder(1, ht.ui.uiTheme.baseColor));
+            hbox2.setPadding(20);
+            hbox2.addView(rate2, {
+                width: 'wrap_content',
+                height: 'wrap_content',
+                vAlign: 'middle'
+            });
+            hbox2.addView(label2, {
+                width: 50,
+                height: 'wrap_content',
+                vAlign: 'middle'
+            });
+
+            var preferredSize2 = hbox2.getPreferredSize();
+            hbox2.addToDOM(window, { x: 10, y: 100, width: preferredSize2.width, height: preferredSize2.height });
+        }
+    </script>
+</head>
+
+<body onload="init();">
+
+</body>
+
+</html>
