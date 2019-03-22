@@ -98,7 +98,7 @@ def('ht.ui.Rate', ht.ui.View, {
                 gy = y;
             
             self.iconRects.push({
-                rect: { x: gx - self.getPaddingLeft() - self.getBorderLeft(), y: gy - self.getPaddingTop() - self.getBorderTop(), width: iconWidth, height: iconHeight }
+                rect: { x: gx - self.getPaddingLeft() - self.getBorderLeft(), y: gy - self.getPaddingTop() - self.getBorderTop(), width: i === (max - 1) ? iconWidth : iconWidth + gap, height: iconHeight }
             });
 
             g.beginPath(); 

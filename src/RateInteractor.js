@@ -15,13 +15,18 @@ def(ui.RateInteractor, ui.Interactor, {
         Default.preventDefault(e);
         var rate = self.getComponent(),
             iconRects = rate.iconRects,
-            lp = rate.lp(e);  
+            lp = rate.lp(e),
+            readOnly = rate.isReadOnly();  
 
         var hoverValue = 0;
         for(var i = 0, len = iconRects.length; i < len; i++) {
-            if (Default.containsPoint(iconRects[i].rect, lp)) {
+            if (Default.containsPoint(iconRects[i].rect, lp) && !readOnly) {
+                rate.setCursor('pointer');
                 hoverValue = i + 1;
                 break;
+            }
+            else {
+                rate.setCursor('default');
             }
         }
 
@@ -56,6 +61,5 @@ def(ui.RateInteractor, ui.Interactor, {
         var rate = self.getComponent();
         
         rate.setHoverValue(0);
-        rate.iv();
     }
 });

@@ -16,135 +16,14 @@
     <script src="../../../../lib/ht.js"></script>
     <script src="../../../../lib/ht-ui.js"></script>
     <script src="../../../lib/ht-ui-rate.js"></script>
-    <script>   
-        ht.Default.setImage('cry', {
-            width: 100,
-            height: 100,
-            comps: [
-                {
-                "type": "oval",
-                "background": "",
-                "borderWidth": 1,
-                "borderColor": "#979797",
-                "rect": [
-                    10,
-                    10,
-                    80,
-                    80
-                ]
-                },
-                {
-                "type": "oval",
-                "background": "#D8D8D8",
-                "borderWidth": 1,
-                "borderColor": "#979797",
-                "rect": [
-                    25,
-                    30,
-                    10,
-                    10
-                ]
-                },
-                {
-                "type": "oval",
-                "background": "#D8D8D8",
-                "borderWidth": 1,
-                "borderColor": "#979797",
-                "rect": [
-                    65,
-                    30,
-                    10,
-                    10
-                ]
-                },
-                {
-                "type": "shape",
-                "borderWidth": 5,
-                "borderColor": "#979797",
-                "points": [
-                    32.43576,
-                    66.80601,
-                    67.56424,
-                    66.80601
-                ]
-                }
-            ]
-        });
-        ht.Default.setImage('laugh', {
-            width: 100,
-            height: 100,
-            comps: [
-            {
-                "type": "oval",
-                "background": "#FEB64D",
-                "borderColor": "#979797",
-                "rect": [
-                    10,
-                    10,
-                    80,
-                    80
-                ]
-                },
-                {
-                "type": "oval",
-                "background": "rgb(247,247,247)",
-                "borderWidth": 1,
-                "borderColor": "#979797",
-                "rect": [
-                    25,
-                    30,
-                    10,
-                    10
-                ]
-                },
-                {
-                "type": "oval",
-                "background": "rgb(247,247,247)",
-                "borderWidth": 1,
-                "borderColor": "#979797",
-                "rect": [
-                    65,
-                    30,
-                    10,
-                    10
-                ]
-                },
-                {
-                "type": "shape",
-                "borderWidth": 5,
-                "borderColor": "rgb(247,247,247)",
-                "points": [
-                    32.43576,
-                    66.80601,
-                    32.43576,
-                    66.80601,
-                    41.10294,
-                    73.54023,
-                    49.88506,
-                    73.54023,
-                    58.66718,
-                    73.54023,
-                    67.56424,
-                    66.80601,
-                    67.56424,
-                    66.80601
-                ],
-                "segments": [
-                    1,
-                    4,
-                    4
-                ]
-                }
-            ]
-        });
-    
+    <script>    
         function init() {
             rate = new ht.ui.Rate();
             rate.setBorder(new ht.ui.border.LineBorder(1, ht.ui.uiTheme.baseColor));
             rate.setPadding(10);
 
-            rate.setUncheckedIcons('cry');
-            rate.setIcons('laugh');
+            rate.setUncheckedIcons('../../../img/柯基.json');
+            rate.setIcons('../../../img/哈士奇.json');
 
             var preferredSize = rate.getPreferredSize();
             rate.addToDOM(window, {x: 10, y: 10, width: preferredSize.width, height: preferredSize.height});

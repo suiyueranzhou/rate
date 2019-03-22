@@ -58,7 +58,7 @@
     rate.setIcons('icon1'); // 设置选中图标
     rate.setIcons(['icon1', 'icon2', 'icon3', 'icon4', 'icon5']);
 
-使用 `ht.Default.setImage` 进行绘制的矢量对象，可进行 `func: 'attr@color'` 绑定，绑定后可通过`setColors`、`setUncheckedColors` 改变颜色。
+使用 `ht.Default.setImage` 进行绘制的矢量对象，可进行 `func: 'attr@color'` 绑定，绑定后可通过 `setColors`、`setUncheckedColors` 改变颜色。
 
     ht.Default.setImage('myIcon', {
         width: 100,
@@ -82,6 +82,10 @@
     rate.setAllowHalf(false); // 设置不允许半星
     rate.setValue(4.5);
 
-组件也常用在表单中，进行星级的表示。
+组件也常用在表单中，进行星级的评定。
 
 !(#example_demo4@160)
+
+组件结合弹框组件，用来展示一些数据信息，可鼠标悬浮查看。
+
+!(#example_demo5@170)
