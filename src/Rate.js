@@ -101,24 +101,26 @@ def('ht.ui.Rate', ht.ui.View, {
                 rect: { x: gx - self.getPaddingLeft() - self.getBorderLeft(), y: gy - self.getPaddingTop() - self.getBorderTop(), width: i === (max - 1) ? iconWidth : iconWidth + gap, height: iconHeight }
             });
 
-            g.beginPath(); 
+            g.beginPath();
             
-            var checkedData = new ht.Data(),
-                uncheckedData = new ht.Data(),
-                color = (typeof(colors) === 'string') ? colors : colors[i],
+            var color = (typeof(colors) === 'string') ? colors : colors[i],
                 uncheckedColor = (typeof(uncheckedColors) === 'string') ? uncheckedColors : uncheckedColors[i],
-                icon = (typeof(icons) === 'string') ? icons : icons[i],
-                uncheckedIcon = (typeof(uncheckedIcons) === 'string') ? uncheckedIcons : uncheckedIcons[i]; 
+                icon = (typeof(icons) === 'string') ? icons : icons[i % icons.length],
+                uncheckedIcon = (typeof(uncheckedIcons) === 'string') ? uncheckedIcons : uncheckedIcons[i % uncheckedIcons.length];
 
-            checkedData.a('color', color);
-            uncheckedData.a('color', uncheckedColor);
+            var iconDrawable = new ht.ui.drawable.ImageDrawable(icon),
+                uncheckedIconDrawable = new ht.ui.drawable.ImageDrawable(uncheckedIcon);
+                
+            if (icon === self.__icons) iconDrawable.setColorTint(color);
+            if (uncheckedIcon === self.__uncheckedIcons) uncheckedIconDrawable.setColorTint(uncheckedColor);
             
+            var drawable = null;
             if (readOnly) {
                 if (i < Math.floor(value)) {
-                    Default.drawImage(g, Default.getImage(icon), gx, gy, iconWidth, iconHeight, checkedData);
+                    drawable = iconDrawable;
                 }
                 else if (i > Math.floor(value))  {
-                    Default.drawImage(g, Default.getImage(uncheckedIcon), gx, gy, iconWidth, iconHeight, uncheckedData);
+                    drawable = uncheckedIconDrawable;
                 }
                 else {
                     if (allowHalf) {
@@ -126,42 +128,43 @@ def('ht.ui.Rate', ht.ui.View, {
                         g.save();
                         g.rect(gx, gy, iconWidth * percentage, iconHeight);
                         g.clip();
-                        Default.drawImage(g, Default.getImage(icon), gx, gy, iconWidth, iconHeight, checkedData);
+                        iconDrawable.draw(gx, gy, iconWidth, iconHeight, null, self);
                         g.restore();
     
                         g.beginPath();
                         g.save();
                         g.rect(gx + iconWidth * percentage, gy, width * (1 - percentage), iconHeight);
-                        g.clip();
-                        Default.drawImage(g, Default.getImage(uncheckedIcon), gx, gy, iconWidth, iconHeight, uncheckedData);   
+                        g.clip();  
+                        uncheckedIconDrawable.draw(gx, gy, iconWidth, iconHeight, null, self);
                         g.restore();
                     }
                     else {
-                        Default.drawImage(g, Default.getImage(uncheckedIcon), gx, gy, iconWidth, iconHeight, uncheckedData);   
+                        drawable = uncheckedIconDrawable;
                     }
                 }
             }
             else { 
                 if (hoverValue) {
                     if (i < hoverValue) {
-                        Default.drawImage(g, Default.getImage(icon), gx, gy, iconWidth, iconHeight, checkedData);
+                        drawable = iconDrawable;
                     } 
                     else {
-                        Default.drawImage(g, Default.getImage(uncheckedIcon), gx, gy, iconWidth, iconHeight, uncheckedData);
+                        drawable = uncheckedIconDrawable;
                     } 
                 }
                 else if (value > 0) {
                     if (i < Math.floor(value)) {
-                        Default.drawImage(g, Default.getImage(icon), gx, gy, iconWidth, iconHeight, checkedData);
+                        drawable = iconDrawable;
                     }
                     else {
-                        Default.drawImage(g, Default.getImage(uncheckedIcon), gx, gy, iconWidth, iconHeight, uncheckedData);
+                        drawable = uncheckedIconDrawable;
                     } 
                 }
                 else {
-                    Default.drawImage(g, Default.getImage(uncheckedIcon), gx, gy, iconWidth, iconHeight, uncheckedData);
+                    drawable = uncheckedIconDrawable;
                 }
             }
+            drawable && drawable.draw(gx, gy, iconWidth, iconHeight, null, self);
         }
     },
     getSerializableProperties:function() {

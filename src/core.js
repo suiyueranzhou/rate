@@ -10,7 +10,7 @@ Default.setImage('rate_star', {
         {
             type: 'star',
             rect: [0, 0, 100, 100],
-            background: { func: 'attr@color' }
+            background: 'rgb(255,255,255)'
         }
     ]
 });

@@ -16,7 +16,7 @@ def(ui.RateInteractor, ui.Interactor, {
         var rate = self.getComponent(),
             iconRects = rate.iconRects,
             lp = rate.lp(e),
-            readOnly = rate.isReadOnly();  
+            readOnly = rate.isReadOnly();
 
         var hoverValue = 0;
         for(var i = 0, len = iconRects.length; i < len; i++) {
